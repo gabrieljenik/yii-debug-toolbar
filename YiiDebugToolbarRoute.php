@@ -190,7 +190,9 @@ class YiiDebugToolbarRoute extends CLogRoute
 
     protected function processLogs($logs)
     {
-        $this->getToolbarWidget()->run();
+        // Check content types again, as it may have not been defined at the beiggining of the processing (as in excel download with GZIP)
+        if ($this->checkContentTypeWhitelist()) 
+        	$this->getToolbarWidget()->run();
     }
 
     private function checkContentTypeWhitelist()
